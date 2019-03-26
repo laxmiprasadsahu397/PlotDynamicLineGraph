@@ -142,8 +142,6 @@ class LineGraph: UIView {
         
         thickerLines.addLines(between: xAxisPoints, transform: t)
         thickerLines.addLines(between: yAxisPoints, transform: t)
-        var min = 1
-        var max = 10
         
         var first: CGFloat = 0
         var last: CGFloat = 0
@@ -187,13 +185,7 @@ class LineGraph: UIView {
                 [CGPoint(x: xMin, y: y).applying(t), CGPoint(x: xMax, y: y).applying(t)] :
                 [CGPoint(x: 0, y: y).applying(t), CGPoint(x: 0, y: y).applying(t).adding(x: 5)]
             
-            
             thinnerLines.addLines(between: tickPoints)
-//            for i in min...max {
-//                thinnerLinesForRect.addLines(between:  [CGPoint(x: xMin, y: CGFloat(i)).applying(t), CGPoint(x: xMax, y: CGFloat(i)).applying(t)])
-//            }
-//            min = max
-//            max += 10
             
             if y != yMin {
                 let label = "\(Int(y))" as NSString
