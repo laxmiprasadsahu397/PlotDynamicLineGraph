@@ -145,19 +145,20 @@ class LineGraph: UIView {
         var min = 1
         var max = 10
         
-        var first = 0.1
-        var last = 1.0
+        var first: CGFloat = 0
+        var last: CGFloat = 0
         for x in stride(from: xMin, through: xMax, by: deltaX) {
-            
+            if x != 0 {
+                first = deltaX / 10
+                last = first * (xMax * 10)
+                for f in stride(from: first, through: last, by: first) {
+                    thinnerLinesForRect.addLines(between:  [CGPoint(x: CGFloat(f), y: yMin).applying(t), CGPoint(x: CGFloat(f), y: yMax).applying(t)])
+                }
+            }
             let tickPoints = showInnerLines ?
                 [CGPoint(x: x, y: yMin).applying(t), CGPoint(x: x, y: yMax).applying(t)] :
                 [CGPoint(x: x, y: 0).applying(t), CGPoint(x: x, y: 0).applying(t).adding(y: -5)]
             thinnerLines.addLines(between: tickPoints)
-            for f in stride(from: first, through: last, by: 0.1) {
-                 thinnerLinesForRect.addLines(between:  [CGPoint(x: CGFloat(f), y: yMin).applying(t), CGPoint(x: CGFloat(f), y: yMax).applying(t)])
-            }
-            first = last
-            last += 1.0
             
             if x != xMin {
                 let label = "\(Int(x))" as NSString
@@ -174,17 +175,25 @@ class LineGraph: UIView {
         }
         for y in stride(from: yMin, through: yMax, by: deltaY) {
             
+            if y != 0 {
+                first = deltaY / 10
+                last = first * (yMax * 10)
+                for f in stride(from: first, through: last, by: first) {
+                    thinnerLinesForRect.addLines(between:  [CGPoint(x: xMin, y: CGFloat(f)).applying(t), CGPoint(x: xMax, y: CGFloat(f)).applying(t)])
+                }
+            }
+            
             let tickPoints = showInnerLines ?
                 [CGPoint(x: xMin, y: y).applying(t), CGPoint(x: xMax, y: y).applying(t)] :
                 [CGPoint(x: 0, y: y).applying(t), CGPoint(x: 0, y: y).applying(t).adding(x: 5)]
             
             
             thinnerLines.addLines(between: tickPoints)
-            for i in min...max {
-                thinnerLinesForRect.addLines(between:  [CGPoint(x: xMin, y: CGFloat(i)).applying(t), CGPoint(x: xMax, y: CGFloat(i)).applying(t)])
-            }
-            min = max
-            max += 10
+//            for i in min...max {
+//                thinnerLinesForRect.addLines(between:  [CGPoint(x: xMin, y: CGFloat(i)).applying(t), CGPoint(x: xMax, y: CGFloat(i)).applying(t)])
+//            }
+//            min = max
+//            max += 10
             
             if y != yMin {
                 let label = "\(Int(y))" as NSString

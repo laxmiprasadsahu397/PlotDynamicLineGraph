@@ -23,7 +23,7 @@ class GraphInPutVC: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.tableView_axis.tableFooterView = UIView()
         
-//         self.coordinates.append(Coordinates.init(_xAxis: 0, _yAxis: 0))
+//        self.coordinates.append(Coordinates.init(_xAxis: 0, _yAxis: 0))
 //        self.coordinates.append(Coordinates.init(_xAxis: 1, _yAxis: 4))
 //        self.coordinates.append(Coordinates.init(_xAxis: 2, _yAxis: 9))
 //        self.coordinates.append(Coordinates.init(_xAxis: 3, _yAxis: 19))
